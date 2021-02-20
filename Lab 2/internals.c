@@ -47,14 +47,14 @@ int internal_cmd_ls(int argc, char *argv[])
 	// Open current directory
 	dirptr = opendir(".");
 
-	// Return error if dp is dull
+	// Return error if dp is null
 	if (dirptr == NULL) return 1;
 
 	// Read and print filenames
 	while (( item = readdir(dirptr) ))
 	{
 		/**********************************************/
-		/*WRITE YOUR CODE HERE
+		printf("%s\n", item -> item_name);
 		/**********************************************/
 	}
 	printf("\n");
@@ -87,7 +87,10 @@ int internal_cmd_echo(int argc, char *argv[])
 			printf(" ");
 		}
 	}
-	if (argc > 1) printf("\n");
+	if (argc > 1) {
+		printf("\n");	
+	}
+
 	return 0;
 }
 
@@ -137,9 +140,11 @@ void internals_add_all()
 {
 	internal_commands = calloc(50, sizeof(command_t*));
 	//add command "echo" "cd" and "ls" 
-	/**********************************************/
-	/*WRITE YOUR CODE HERE
-	/**********************************************/
+
+	add_command("echo", &internal_cmd_echo);
+	add_command("cd", &internal_cmd_cd);
+	add_command("ls", &internal_cmd_ls);	
+
 	add_command("dir",   &internal_cmd_ls);
 	add_command("environ",   &internal_cmd_environ);
 	add_command("help", &internal_cmd_help);
