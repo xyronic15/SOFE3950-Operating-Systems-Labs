@@ -22,7 +22,8 @@ int internal_cmd_cd(int argc, char *argv[])
 		// Change directory and return result
 		
 		/**********************************************/
-		/*WRITE YOUR CODE HERE
+		chdir(argv[1]);
+		return EXIT_SUCCESS;
 		/**********************************************/
 	}
 
@@ -32,7 +33,9 @@ int internal_cmd_cd(int argc, char *argv[])
 		// Request current directory
 		char *result = getcwd(0, 0);
 		// Return error if result is still null
-		if (result == NULL) return EXIT_FAILURE;
+		if (result == NULL) {
+			return EXIT_FAILURE;
+		}
 		// Print result
 		printf("%s\n", result);
 		return EXIT_SUCCESS;
