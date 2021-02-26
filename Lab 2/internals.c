@@ -54,7 +54,8 @@ int internal_cmd_ls(int argc, char *argv[])
 	while (( item = readdir(dirptr) ))
 	{
 		/**********************************************/
-		/*WRITE YOUR CODE HERE
+		/*WRITE YOUR CODE HERE*/
+		printf("%s\n", item->d_name);
 		/**********************************************/
 	}
 	printf("\n");
@@ -138,7 +139,10 @@ void internals_add_all()
 	internal_commands = calloc(50, sizeof(command_t*));
 	//add command "echo" "cd" and "ls" 
 	/**********************************************/
-	/*WRITE YOUR CODE HERE
+	/*WRITE YOUR CODE HERE*/
+	add_command("echo",   &internal_cmd_echo);
+	add_command("cd",   &internal_cmd_cd);
+	add_command("ls",   &internal_cmd_ls);
 	/**********************************************/
 	add_command("dir",   &internal_cmd_ls);
 	add_command("environ",   &internal_cmd_environ);
