@@ -81,7 +81,9 @@ int internal_cmd_echo(int argc, char *argv[])
 	for (int i=1; i < argc; i++)
 	{
 		/**********************************************/
-		/*WRITE YOUR CODE HERE
+		/*WRITE YOUR CODE HERE*/
+		// Print each token in argv
+		printf(argv[i]);
 		/**********************************************/
 		if (i != argc-1)
 		{
