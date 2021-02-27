@@ -159,7 +159,8 @@ int main(int argc, char *argv[])
             {
                 // Run the internal command
                 /**********************************************/
-		        /*WRITE YOUR CODE HERE
+		        /*WRITE YOUR CODE HERE*/
+                cmp_command.cmd_ptr(&tokens);                
 		        /**********************************************/
                 last_exit = exit_code;
 
