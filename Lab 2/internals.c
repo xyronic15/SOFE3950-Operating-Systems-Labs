@@ -20,9 +20,19 @@ int internal_cmd_cd(int argc, char *argv[])
 	if (argc > 1)
 	{
 		// Change directory and return result
-		
+
 		/**********************************************/
-		/*WRITE YOUR CODE HERE
+		/*WRITE YOUR CODE HERE*/
+		// Use the 2nd element in passed tokens
+		if(chdir(argv[1]) != 0) return EXIT_FAILURE;
+		
+		// Request current directory
+		char *result = getcwd(0, 0);
+		// Return error if result is still null
+		if (result == NULL) return EXIT_FAILURE;
+		// Print result
+		printf("%s\n", result);
+		return EXIT_SUCCESS;
 		/**********************************************/
 	}
 
