@@ -25,14 +25,15 @@ int internal_cmd_cd(int argc, char *argv[])
 		/*WRITE YOUR CODE HERE*/
 		// Use the 2nd element in passed tokens
 		if(chdir(argv[1]) != 0) return EXIT_FAILURE;
+		// continue;
 		
-		// Request current directory
-		char *result = getcwd(0, 0);
-		// Return error if result is still null
-		if (result == NULL) return EXIT_FAILURE;
-		// Print result
-		printf("%s\n", result);
-		return EXIT_SUCCESS;
+		// // Request current directory
+		// char *result = getcwd(0, 0);
+		// // Return error if result is still null
+		// if (result == NULL) return EXIT_FAILURE;
+		// // Print result
+		// printf("%s\n", result);
+		// return EXIT_SUCCESS;
 		/**********************************************/
 	}
 
@@ -65,6 +66,7 @@ int internal_cmd_ls(int argc, char *argv[])
 	{
 		/**********************************************/
 		/*WRITE YOUR CODE HERE*/
+		// Print the file/dir name
 		printf("%s\n", item->d_name);
 		/**********************************************/
 	}
@@ -93,7 +95,7 @@ int internal_cmd_echo(int argc, char *argv[])
 		/**********************************************/
 		/*WRITE YOUR CODE HERE*/
 		// Print each token in argv
-		printf(argv[i]);
+		printf("%s", argv[i]);
 		/**********************************************/
 		if (i != argc-1)
 		{

@@ -68,7 +68,7 @@ int main(int argc, char *argv[])
     char command[BUFFER_LEN] = { 0 };
     char arg[BUFFER_LEN] = { 0 };
 
-    int last_exit = 0;;
+    int last_exit = 0;
 
     // Add internal commands
     internals_add_all();
@@ -160,9 +160,10 @@ int main(int argc, char *argv[])
                 // Run the internal command
                 /**********************************************/
 		        /*WRITE YOUR CODE HERE*/
-                cmp_command.cmd_ptr(&tokens);                
+                last_exit = cmp_command.cmd_ptr(count, tokens);
+                               
 		        /**********************************************/
-                last_exit = exit_code;
+                
 
                 command_handled = 1;
             }
