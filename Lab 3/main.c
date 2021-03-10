@@ -184,7 +184,7 @@ void read_puzzle() {
 	char *pos;
 	
 	//Open the puzzle file
-	fp = /* WRITE YOUR OWN CODE HERE*/ fopen("puzzle.txt", "r");
+	fp = fopen("puzzle.txt", "r");
 		
 	//Check if open failed
 	if(fp == NULL) {
@@ -291,7 +291,6 @@ int main(void) {
 	read_puzzle();
 	
 	//Initialize and set thread detached attribute, the attribute has been defined as attr
-	/* WRITE YOUR OWN CODE HERE*/
 	pthread_attr_detachstate(&attr, PTHREAD_CREATE_DETACHED);
 
 	// Thread counter
@@ -364,7 +363,7 @@ int main(void) {
 	for(int i = 0; i < NUM_THREADS; i++) {
 			
 		//Try to do a thread join
-		if(/* WRITE YOUR OWN CODE HERE*/) {
+		if(pthread_join(&thread_id[i], NULL)) {
 			printf("ERROR: Unable to join thread %d\n", i + 1);
 			exit(-1);
 		}
