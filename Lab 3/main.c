@@ -291,7 +291,7 @@ int main(void) {
 	read_puzzle();
 	
 	//Initialize and set thread detached attribute, the attribute has been defined as attr
-	pthread_attr_detachstate(&attr, PTHREAD_CREATE_DETACHED);
+	pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_DETACHED);
 
 	// Thread counter
 	int threadCounter = 0;
@@ -363,7 +363,7 @@ int main(void) {
 	for(int i = 0; i < NUM_THREADS; i++) {
 			
 		//Try to do a thread join
-		if(pthread_join(&thread_id[i], NULL)) {
+		if(pthread_join(thread_id[i], NULL)) {
 			printf("ERROR: Unable to join thread %d\n", i + 1);
 			exit(-1);
 		}
