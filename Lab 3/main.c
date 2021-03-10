@@ -291,7 +291,8 @@ int main(void) {
 	read_puzzle();
 	
 	//Initialize and set thread detached attribute, the attribute has been defined as attr
-	/* WRITE YOUR OWN CODE HERE*/ 
+	/* WRITE YOUR OWN CODE HERE*/
+	pthread_attr_detachstate(&attr, PTHREAD_CREATE_DETACHED);
 	
 	//Start the subgrid checking
 	for(int i = 0; i < 3; i++) {		
