@@ -336,7 +336,7 @@ int main(void) {
 	for(int i = 0; i < NUM_CELLS; i++) {		
 			
 		//Allocate space for the column data that will be passed to the thread
-		col_helper = /* WRITE YOUR OWN CODE HERE*/;
+		col_helper = /* WRITE YOUR OWN CODE HERE*/ (col_data *) calloc(1, sizeof(col_data));
 		
 		//Set the index
 		col_helper->column = i;
