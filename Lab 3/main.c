@@ -293,6 +293,9 @@ int main(void) {
 	//Initialize and set thread detached attribute, the attribute has been defined as attr
 	/* WRITE YOUR OWN CODE HERE*/
 	pthread_attr_detachstate(&attr, PTHREAD_CREATE_DETACHED);
+
+	// Thread counter
+	int threadCounter = 0;
 	
 	//Start the subgrid checking
 	for(int i = 0; i < 3; i++) {		
@@ -306,7 +309,7 @@ int main(void) {
 			grid_helper->horizontal = j;
 						
 			//Create the thread and check if failed
-			if(/* WRITE YOUR OWN CODE HERE*/) {
+			if(pthread_create(&thread_id[threadCounter++], &attr, check_grid, &grid_helper) != 0) {
 				printf("ERROR: Unable to create subgrid checking thread %d\n", i + 1);
 				exit(-1);
 			}		
@@ -325,7 +328,7 @@ int main(void) {
 		row_helper->row = i;
 				
 		//Create the thread and check if failed
-		if(/* WRITE YOUR OWN CODE HERE*/) {
+		if(pthread_create(&thread_id[threadCounter++], &attr, check_row, &row_helper) != 0) {
 			printf("ERROR: Unable to create row checking thread %d\n", i + 1);
 			exit(-1);
 		}		
@@ -337,13 +340,13 @@ int main(void) {
 	for(int i = 0; i < NUM_CELLS; i++) {		
 			
 		//Allocate space for the column data that will be passed to the thread
-		col_helper = /* WRITE YOUR OWN CODE HERE*/ (col_data *) calloc(1, sizeof(col_data));
+		col_helper = (column_data *) calloc(1, sizeof(column_data));
 		
 		//Set the index
 		col_helper->column = i;
 				
 		//Create the thread and check if failed
-		if(/* WRITE YOUR OWN CODE HERE*/) {
+		if(pthread_create(&thread_id[threadCounter++], &attr, check_row, &col_helper) != 0) {
 			printf("ERROR: Unable to create column checking thread %d\n", i + 1);
 			exit(-1);
 		}		
