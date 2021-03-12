@@ -291,10 +291,11 @@ int main(void) {
 	read_puzzle();
 	
 	//Initialize and set thread detached attribute, the attribute has been defined as attr
+	pthread_attr_init(&attr);
 	pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_DETACHED);
 
 	// Thread counter
-	int threadCounter = 0;
+	// int threadCounter = 0;
 	
 	//Start the subgrid checking
 	for(int i = 0; i < 3; i++) {		
@@ -308,10 +309,10 @@ int main(void) {
 			grid_helper->horizontal = j;
 						
 			//Create the thread and check if failed
-			if(pthread_create(&thread_id[threadCounter++], &attr, check_grid, &grid_helper) != 0) {
+			if(pthread_create(&thread_id[(3*i + j)], &attr, check_grid, grid_helper) != 0) {
 				printf("ERROR: Unable to create subgrid checking thread %d\n", i + 1);
 				exit(-1);
-			}		
+			}
 			
 			//The grid helper's memory will be cleared when the thread is finished using it
 		}
@@ -327,10 +328,10 @@ int main(void) {
 		row_helper->row = i;
 				
 		//Create the thread and check if failed
-		if(pthread_create(&thread_id[threadCounter++], &attr, check_row, &row_helper) != 0) {
+		if(pthread_create(&thread_id[(9 + i)], &attr, check_row, row_helper) != 0) {
 			printf("ERROR: Unable to create row checking thread %d\n", i + 1);
 			exit(-1);
-		}		
+		}
 		
 		//The row helper's memory will be cleared when the thread is finished using it
 	}
@@ -345,10 +346,11 @@ int main(void) {
 		col_helper->column = i;
 				
 		//Create the thread and check if failed
-		if(pthread_create(&thread_id[threadCounter++], &attr, check_row, &col_helper) != 0) {
+		if(pthread_create(&thread_id[(18 + i)], &attr, check_row, col_helper) != 0) {
 			printf("ERROR: Unable to create column checking thread %d\n", i + 1);
 			exit(-1);
-		}		
+		}
+			
 		
 		//The column helper's memory will be cleared when the thread is finished using it
 	}
@@ -363,7 +365,9 @@ int main(void) {
 	for(int i = 0; i < NUM_THREADS; i++) {
 			
 		//Try to do a thread join
-		if(pthread_join(thread_id[i], NULL)) {
+		int check = pthread_join(thread_id[i], NULL);
+		if(check != 0) {
+			// printf("%d %d\n", i, check);
 			printf("ERROR: Unable to join thread %d\n", i + 1);
 			exit(-1);
 		}
