@@ -1,8 +1,8 @@
 CC = gcc
-CFLAGS = -Wall -o 
+CFLAGS = -Wextra -std=c99 -pthread
 
 all: 
-	$(CC) $(CFLAGS) main main.c
+	$(CC) $(CFLAGS) main.c -o main
 
 run: 
 	./main
