@@ -376,7 +376,7 @@ int main(int argc, char *argv[])
 
 	// Initialize pthread
 	/* WRITE YOUR OWN CODE HERE */
-	pthread_barrier_init(&customer_thread, NULL, NUM_CUSTOMERS);
+	pthread_barrier_init(&customer_thread, NULL, NUM_RESOURCES - 1);
 
 	// Initialize pthread array of NUM_CUSTOMERS
 	/* WRITE YOUR OWN CODE HERE */
