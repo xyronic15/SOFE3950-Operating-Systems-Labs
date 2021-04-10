@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS = -o 
+CFLAGS = -Wall -Wextra -std=gnu99 -pthread
 
-make:
-	$(CC) $(CFLAGS) main main.c 
+all: 
+	$(CC) $(CFLAGS) banker.c -o banker
